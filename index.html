@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>かんたん補助金診断｜杉並区 戸建てリフォーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#1E4034; --pine-2:#2C5746; --line:#06C755;
+    --bg:#E9E3D6; --bot:#FFFFFF; --user:#06C755; --ink:#23312D; --ink-soft:#5a665f;
+    --amber:#C97B2C; --sand:#D8C7A4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{background:#4a4339;font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);
+    display:flex;justify-content:center;}
+  .phone{width:100%;max-width:430px;height:100vh;max-height:920px;background:var(--bg);
+    display:flex;flex-direction:column;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.45);overflow:hidden;}
+
+  header{background:var(--pine);color:#fff;padding:13px 16px;display:flex;align-items:center;gap:11px;flex:0 0 auto;
+    box-shadow:0 2px 10px rgba(0,0,0,.18);z-index:3;}
+  header .av{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;
+    font-family:"Zen Maru Gothic";font-weight:900;color:var(--pine);font-size:20px;position:relative;flex:0 0 auto;}
+  header .av::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;
+    background:var(--line);border:2px solid var(--pine);}
+  header .ht b{font-family:"Zen Maru Gothic";font-weight:900;font-size:16px;letter-spacing:.01em;}
+  header .ht span{display:block;font-size:10.5px;color:#bcd2c3;margin-top:1px;}
+  header .badge{margin-left:auto;font-size:9.5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+    padding:4px 8px;border-radius:7px;line-height:1.3;text-align:center;}
+
+  .chat{flex:1 1 auto;overflow-y:auto;padding:16px 14px 10px;display:flex;flex-direction:column;gap:11px;
+    background-image:radial-gradient(rgba(255,255,255,.4) 1px,transparent 1px);background-size:22px 22px;}
+  .row{display:flex;gap:8px;align-items:flex-end;}
+  .row.bot{align-self:flex-start;max-width:88%;}
+  .row.user{align-self:flex-end;flex-direction:row-reverse;}
+  .mini{width:30px;height:30px;border-radius:50%;background:var(--pine);color:#fff;display:grid;place-items:center;
+    font-family:"Zen Maru Gothic";font-weight:900;font-size:13px;flex:0 0 auto;margin-bottom:2px;}
+  .bub{padding:11px 14px;border-radius:16px;font-size:13.5px;line-height:1.72;
+    box-shadow:0 1px 2px rgba(0,0,0,.08);white-space:pre-wrap;word-break:break-word;}
+  .bot .bub{background:var(--bot);border-top-left-radius:5px;color:var(--ink);}
+  .user .bub{background:var(--user);border-top-right-radius:5px;color:#fff;font-weight:600;}
+  .bot .bub b{color:var(--pine);}
+  .bot .bub .amt{font-family:"Zen Maru Gothic";font-weight:900;color:var(--amber);}
+  .bot .bub .tt{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px;margin-bottom:4px;}
+  .tt.ku{background:#e9f0e8;color:var(--pine);} .tt.to{background:#fbeede;color:#A85E18;} .tt.kn{background:#f3e6e3;color:#B23A2E;}
+  .bot .bub .lhd{font-weight:900;color:var(--pine);font-size:12.5px;margin-bottom:6px;display:block;}
+  .lnk{display:flex;align-items:center;gap:7px;padding:8px 10px;margin-top:6px;background:#f3f7f2;border:1px solid #dde7dd;border-radius:9px;
+    text-decoration:none;color:var(--ink);font-weight:700;font-size:12px;line-height:1.4;}
+  .lnk:first-of-type{margin-top:0;}
+  .lnk:active{background:#e7efe6;}
+  .lnk .src{font-size:9px;font-weight:700;padding:1px 6px;border-radius:5px;flex:0 0 auto;}
+  .lnk .ar{margin-left:auto;flex:0 0 auto;color:#9fb0a4;}
+  .lnk .src.ku{background:#e9f0e8;color:var(--pine);} .lnk .src.to{background:#fbeede;color:#A85E18;} .lnk .src.kn{background:#f3e6e3;color:#B23A2E;}
+
+  .typing{display:flex;gap:4px;padding:13px 16px;background:var(--bot);border-radius:16px;border-top-left-radius:5px;width:fit-content;box-shadow:0 1px 2px rgba(0,0,0,.08);}
+  .typing i{width:7px;height:7px;border-radius:50%;background:#b9c2bc;animation:bl 1.2s infinite;}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes bl{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+
+  .quick{display:flex;flex-wrap:wrap;gap:8px;padding:6px 14px 12px;align-content:flex-start;}
+  .chip{background:#fff;border:1.5px solid var(--pine);color:var(--pine);font-weight:700;font-size:13px;
+    padding:10px 16px;border-radius:999px;cursor:pointer;transition:.15s;font-family:inherit;
+    box-shadow:0 2px 6px rgba(30,64,52,.12);}
+  .chip:active{transform:scale(.96);background:var(--pine);color:#fff;}
+  .chip.cta{background:var(--amber);border-color:var(--amber);color:#fff;}
+  .chip.tel{background:var(--line);border-color:var(--line);color:#fff;text-decoration:none;display:inline-block;}
+  .chip.ghost{background:transparent;border-color:var(--sand);color:var(--ink-soft);box-shadow:none;}
+
+  .disc{font-size:9px;color:var(--ink-soft);text-align:center;padding:7px 14px 9px;background:#fff;line-height:1.55;flex:0 0 auto;border-top:1px solid var(--sand);}
+  .chat::-webkit-scrollbar{width:0;}
+</style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <div class="av">和</div>
+      <div class="ht"><b>かんたん補助金診断</b><span>杉並区の戸建て向け・無料・登録不要／約30秒</span></div>
+      <div class="badge">令和8<br>年度版</div>
+    </header>
+    <div class="chat" id="chat"></div>
+    <div class="quick" id="quick"></div>
+    <div class="disc">
+      入力内容はこの端末の中だけで処理し、外部に送信しません。＊金額は令和8年度時点の目安です。予算枠到達で受付終了。対象可否・最新額は申請前にご確認ください。
+    </div>
+  </div>
+
+<script>
+const chatEl=document.getElementById('chat'), quickEl=document.getElementById('quick');
+const state={};
+const scroll=()=>chatEl.scrollTop=chatEl.scrollHeight;
+
+function fmt(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
+  .replace(/\[(KU|TO|KN)\]/g,(m,k)=>({KU:'<span class="tt ku">杉並区</span>',TO:'<span class="tt to">東京都</span>',KN:'<span class="tt kn">国</span>'})[k])
+  .replace(/¥([0-9０-９万円\.kWh／/]+)/g,'<span class="amt">$1</span>');}
+
+function userBubble(t){const r=document.createElement('div');r.className='row user';
+  r.innerHTML='<div class="bub">'+t.replace(/</g,'&lt;')+'</div>';chatEl.appendChild(r);scroll();}
+
+function botBubble(t){const r=document.createElement('div');r.className='row bot';
+  r.innerHTML='<div class="mini">和</div><div class="bub">'+fmt(t)+'</div>';chatEl.appendChild(r);scroll();}
+
+function typing(on){if(on){const r=document.createElement('div');r.className='row bot';r.id='typing';
+  r.innerHTML='<div class="mini">和</div><div class="typing"><i></i><i></i><i></i></div>';chatEl.appendChild(r);scroll();}
+  else{const t=document.getElementById('typing');if(t)t.remove();}}
+
+function quick(opts){quickEl.innerHTML='';opts.forEach(o=>{
+  if(o.href){const a=document.createElement('a');a.className='chip tel';a.href=o.href;a.textContent=o.label;quickEl.appendChild(a);return;}
+  const b=document.createElement('button');b.className='chip'+(o.cls?' '+o.cls:'');b.textContent=o.label;
+  b.onclick=()=>o.fn();quickEl.appendChild(b);});}
+
+// sequential bot messages with typing
+async function say(list){quickEl.innerHTML='';
+  for(const m of list){typing(true);await new Promise(r=>setTimeout(r,Math.min(220+m.length*9,1100)));typing(false);botBubble(m);}}
+
+/* 公式ページ（検証済みURL） */
+const LINKS={
+  ku_eco:{n:"杉並区 エコ住宅促進助成",u:"https://www.city.suginami.tokyo.jp/s103/819.html",s:"区"},
+  ku_solar:{n:"杉並区 太陽光・蓄電池の助成",u:"https://www.city.suginami.tokyo.jp/s103/24168.html",s:"区"},
+  ku_ev:{n:"杉並区 EV充電・V2H助成",u:"https://www.city.suginami.tokyo.jp/s103/823.html",s:"区"},
+  ku_to:{n:"杉並区 木造住宅の耐震(旧耐震)",u:"https://www.city.suginami.tokyo.jp/s095/1922.html",s:"区"},
+  ku_tn:{n:"杉並区 木造住宅の耐震(新耐震)",u:"https://www.city.suginami.tokyo.jp/s095/1923.html",s:"区"},
+  ku_midori:{n:"杉並区 接道部緑化助成",u:"https://www.city.suginami.tokyo.jp/s100/1659.html",s:"区"},
+  ku_kyoai:{n:"杉並区 狭あい道路の塀建替え助成",u:"https://www.city.suginami.tokyo.jp/guide/sumai/burokkubeitoukaishujosei/1048920.html",s:"区"},
+  ku_kaigo:{n:"杉並区 介護保険の住宅改修費",u:"https://www.city.suginami.tokyo.jp/guide/zei/kaigo/service/1014600.html",s:"区"},
+  ku_koreisha:{n:"杉並区 高齢者住宅改修給付",u:"https://www.city.suginami.tokyo.jp/s039/1153.html",s:"区"},
+  to_dan:{n:"東京都 断熱・太陽光住宅普及拡大事業",u:"https://www.tokyo-co2down.jp/subsidy/adiabatic_solor",s:"都"},
+  to_zero:{n:"東京都 東京ゼロエミ住宅",u:"https://www.tokyo-co2down.jp/subsidy/tokyo_zero_emission_house/tokyo_zero_emission_house_r08_fukyu/",s:"都"},
+  to_bouon:{n:"東京都 沿道の防音工事助成（環七・環八等）",u:"https://www.kensetsu.metro.tokyo.lg.jp/road/endo/bouon",s:"都"},
+  kn_camp:{n:"国 住宅省エネ2026キャンペーン",u:"https://jutaku-shoene2026.mlit.go.jp/",s:"国"},
+  kn_mirai:{n:"国 みらいエコ住宅2026",u:"https://mirai-eco2026.mlit.go.jp/",s:"国"},
+  kn_mado:{n:"国 先進的窓リノベ2026",u:"https://www.env.go.jp/earth/earth/ondanka/building_insulation/window_00004.html",s:"国"},
+};
+function srcCls(s){return s==="区"?"ku":s==="都"?"to":"kn";}
+function botLinks(keys){
+  const u=[...new Set(keys)].filter(k=>LINKS[k]); if(!u.length) return;
+  let h='<div class="mini">和</div><div class="bub"><span class="lhd">🔗 公式ページ（詳細・申請はこちら）</span>';
+  u.forEach(k=>{const L=LINKS[k];
+    h+='<a class="lnk" href="'+L.u+'" target="_blank" rel="noopener"><span class="src '+srcCls(L.s)+'">'+L.s+'</span>'+L.n+'<span class="ar">›</span></a>';});
+  h+='<div style="font-size:9px;color:#8a958d;margin-top:7px;line-height:1.4;">※外部の公式サイトが開きます。最新の金額・要件・受付状況は各ページでご確認ください。</div></div>';
+  const r=document.createElement('div');r.className='row bot';r.innerHTML=h;chatEl.appendChild(r);scroll();
+}
+
+/* ---------- flow ---------- */
+async function start(){
+  state.topic=state.sub=state.household=state.mokuzou=state.endou=state.setai=state.kaigo=null;
+  await say(["こんにちは！杉並区の戸建てにお使いいただける令和8年度の補助金を、かんたんに診断します🌱","いま気になっている工事はどれですか？"]);
+  quick([
+    {label:"断熱・窓",fn:()=>pickTopic("断熱・窓")},
+    {label:"太陽光・蓄電池",fn:()=>pickTopic("太陽光・蓄電池")},
+    {label:"給湯器の交換",fn:()=>pickTopic("給湯器の交換")},
+    {label:"耐震・外まわり",fn:()=>pickTopic("耐震・外まわり")},
+    {label:"高齢者・バリアフリー",fn:()=>pickTopic("高齢者・バリアフリー")},
+    {label:"建て替え・新築を検討",fn:()=>pickTopic("建て替え・新築")},
+    {label:"いろいろ検討中",fn:()=>pickTopic("いろいろ検討中")},
+  ]);
+}
+
+async function pickTopic(t){state.topic=t;userBubble(t);
+  if(t==="断熱・窓"){await say(["お住まいが建てられたのは、おおよそいつ頃ですか？(国の制度の対象が変わります)"]);
+    quick([{label:"平成10年以前",fn:()=>pickSub("平成10年以前")},{label:"平成11年以降",fn:()=>pickSub("平成11年以降")},{label:"わからない",fn:()=>pickSub("わからない")}]);}
+  else if(t==="太陽光・蓄電池"){await say(["屋根に太陽光パネルは載せられそうですか？"]);
+    quick([{label:"載せたい",fn:()=>pickSub("太陽光+蓄電池")},{label:"蓄電池だけ",fn:()=>pickSub("蓄電池のみ")},{label:"わからない",fn:()=>pickSub("未定")}]);}
+  else if(t==="給湯器の交換"){await say(["どのタイプをご希望ですか？"]);
+    quick([{label:"エコキュート等",fn:()=>pickSub("エコキュート")},{label:"エネファーム",fn:()=>pickSub("エネファーム")},{label:"決めてない",fn:()=>pickSub("未定")}]);}
+  else if(t==="耐震・外まわり"){await say(["建物が建てられた時期はどれですか？(耐震助成の対象判定に使います)"]);
+    quick([{label:"昭和56年5月以前",fn:()=>pickSub("旧耐震")},{label:"56年6月〜平成12年5月",fn:()=>pickSub("新耐震")},{label:"それ以降／不明",fn:()=>pickSub("以降")}]);}
+  else if(t==="高齢者・バリアフリー"){await say(["介護保険の認定状況はどれですか？（使える制度が変わります）"]);
+    quick([{label:"要支援・要介護",fn:()=>pickKaigo("要介護")},{label:"自立(非該当)と判定",fn:()=>pickKaigo("自立")},{label:"認定なし/わからない",fn:()=>pickKaigo("不明")}]);}
+  else if(t==="建て替え・新築"){await say(["国の新築補助は世帯で対象が変わります。あてはまるものは？（若者夫婦＝夫婦のいずれかが39歳以下）"]);
+    quick([{label:"子育て・若者夫婦世帯",fn:()=>pickSetai("子育て・若者")},{label:"それ以外の世帯",fn:()=>pickSetai("一般")},{label:"わからない",fn:()=>pickSetai("不明")}]);}
+  else {state.sub=null;askMokuzou();}
+}
+
+async function pickSetai(v){state.setai=v;userBubble(v);result();}
+async function pickKaigo(v){state.kaigo=v;userBubble(v);result();}
+
+async function pickSub(s){state.sub=s;userBubble(s);
+  if(state.topic==="断熱・窓") askEndou(); else result();
+}
+
+async function askMokuzou(){await say(["お住まいは木造ですか？（区の耐震助成は木造住宅が対象です）"]);
+  quick([{label:"木造",fn:()=>pickMokuzou("木造")},{label:"鉄骨・RC等",fn:()=>pickMokuzou("非木造")},{label:"わからない",fn:()=>pickMokuzou("不明")}]);}
+async function pickMokuzou(m){state.mokuzou=m;userBubble(m);askEndou();}
+async function askEndou(){await say(["環状七号線・環状八号線の沿道（道路から約20m以内）にお住まいですか？（沿道は防音工事助成の対象になり得ます）"]);
+  quick([{label:"環七・環八沿い",fn:()=>pickEndou("沿道")},{label:"それ以外",fn:()=>pickEndou("非沿道")},{label:"わからない",fn:()=>pickEndou("不明")}]);}
+async function pickEndou(e){state.endou=e;userBubble(e);result();}
+
+/* ---------- result ---------- */
+async function result(){
+  const msgs=["診断結果です✨ あなたの場合、使えそうなのはこちらです。"];
+  const t=state.topic, s=state.sub;
+  const links=[];
+
+  if(t==="断熱・窓"){
+    msgs.push("[KN] 先進的窓リノベ2026＝窓・ドアの断熱改修で ¥上限100万円/戸。補助総額5万円以上が条件です。");
+    if(s==="平成10年以前") msgs.push("[KN] みらいエコ住宅2026も対象になりやすいです(¥上限100万円/戸)。2026年から窓工事が必須なので、窓リノベと相性◎。");
+    else if(s==="平成11年以降") msgs.push("[KN] みらいエコ住宅2026は平成11年基準を満たさない築古向けのため、対象外の可能性。まず窓リノベ＋下記の都・区が中心です。");
+    else msgs.push("[KN] みらいエコ住宅2026は築年で対象が変わります(平成10年以前築相当が目安)。要確認です。");
+    msgs.push("[TO] 高断熱の窓・ドア、壁/床の断熱化、高断熱浴槽が対象。窓・ドアは単価が拡充されています。");
+    msgs.push("[KU] エコ住宅促進助成の断熱改修が対象になり得ます。");
+    links.push("kn_mado","kn_mirai","to_dan","ku_eco","kn_camp");
+    if(state.endou==="沿道"){ msgs.push("[TO] 環七・環八沿道なので、窓の防音強化に使える「沿道の防音工事助成」も対象になり得ます(東京都審査の工事費の3/4目安)。"); links.push("to_bouon"); }
+    else if(state.endou==="不明"){ msgs.push("[TO] 環七・環八の沿道（道路から約20m以内）なら、防音サッシ等の沿道の防音工事助成も対象に。"); links.push("to_bouon"); }
+  }
+  else if(t==="太陽光・蓄電池"){
+    if(s==="蓄電池のみ"){
+      msgs.push("[TO] 蓄電池 ¥上限120万円/戸。DR実証に参加すると上限が撤廃され、参加費＋IoT機器で計15万円が上乗せ。");
+      msgs.push("[KN] DR家庭用蓄電池 ¥上限60万円。2026年4月から東京都の補助と併用できます。");
+      msgs.push("[KU] 蓄電池 ¥定額5万円。");
+    } else {
+      msgs.push("[TO] 太陽光 ¥12万円/kW(上限36万円)＋蓄電池 ¥上限120万円/戸(DR実証で上限撤廃)。機能性PVは最大10万円上乗せ。");
+      msgs.push("[KU] 太陽光 ¥4万円/kW(上限12万円)＋蓄電池 ¥定額5万円。");
+      msgs.push("[KN] 蓄電池はDR家庭用蓄電池 ¥上限60万円も併用候補。");
+      msgs.push("併用イメージ：太陽光6kW＋蓄電池(DR実証あり)で 区17万＋都286万＝¥約303万円 という試算例も(あくまで目安)。");
+    }
+    if(s==="未定") msgs.push("屋根の向き・面積で太陽光の可否が変わるため、最終的には現地確認が確実です。");
+    links.push("to_dan","ku_solar","kn_camp");
+  }
+  else if(t==="給湯器の交換"){
+    if(s==="エネファーム"){
+      msgs.push("[KN] 給湯省エネ2026(エネファーム)が対象。");
+      msgs.push("[KU] エコ住宅促進助成でエネファームが対象。");
+    } else {
+      msgs.push("[KN] 給湯省エネ2026＝高効率給湯器(エコキュート等)。上位機種で ¥10万円目安。新築も対象。");
+      msgs.push("[TO] エコキュート等が対象(PV連携・再エネ電力契約やDR実証参加が要件の場合あり)。");
+      msgs.push("[KU] エコ住宅促進助成でエコキュート等が対象。");
+    }
+    msgs.push("国・都・区は補助対象が重複しない範囲で併用を検討できます。");
+    links.push("kn_camp","to_dan","ku_eco");
+  }
+  else if(t==="耐震・外まわり"){
+    if(s==="旧耐震") msgs.push("[KU] 昭和56年5月以前の木造住宅は、耐震診断・耐震改修助成の手厚い対象です。");
+    else if(s==="新耐震") msgs.push("[KU] 昭和56年6月〜平成12年5月の木造住宅向け、新耐震基準の耐震化助成が対象です。");
+    else msgs.push("[KU] 耐震助成は建築時期で対象が変わります。まずは簡易診断から確認しましょう。");
+    msgs.push("[KU] 外まわりは、接道部緑化助成(生けがき等で個人 ¥1mあたり12,000円・既存塀の撤去費も対象)や、狭あい道路の塀の建替え助成が使えます。");
+    msgs.push("※通学路を含む“区内全域のブロック塀撤去助成”は現行制度が一旦終了し再開を検討中です。最新は区(市街地整備課)に要確認。");
+    links.push(s==="旧耐震"?"ku_to":"ku_tn","ku_midori","ku_kyoai");
+  }
+  else if(t==="高齢者・バリアフリー"){
+    if(state.kaigo==="要介護")
+      msgs.push("[KU] 介護保険の住宅改修費＝手すり取付・段差解消・滑りにくい床材・引き戸への取替・洋式便器化など。支給限度 ¥20万円で原則9割給付(最大18万円、所得により7〜9割)。");
+    else if(state.kaigo==="自立")
+      msgs.push("[KU] 高齢者住宅改修給付＝介護保険が自立(非該当)と判定された65歳以上向け。予防給付(手すり・便器洋式化) ¥上限20万円、附帯用具(腰掛便座・入浴補助等) ¥上限10万円、工事費の9割給付。認定から6カ月以内。");
+    else
+      msgs.push("[KU] バリアフリー改修は介護認定で使える制度が変わります。要支援・要介護なら介護保険の住宅改修費(限度20万円・9割給付)、自立(非該当)判定の65歳以上なら高齢者住宅改修給付(予防給付20万円＋附帯用具10万円)。");
+    msgs.push("いずれも“工事前の事前申請”が必須です。まずは地域包括支援センター(ケア24)や区の介護保険課にご相談を。国のリフォーム促進税制(バリアフリー改修)で所得税・固定資産税が軽減される場合もあります。");
+    if(state.kaigo==="要介護") links.push("ku_kaigo");
+    else if(state.kaigo==="自立") links.push("ku_koreisha");
+    else links.push("ku_kaigo","ku_koreisha");
+  }
+  else if(t==="建て替え・新築"){
+    msgs.push("[KN] みらいエコ住宅2026(新築)。GX志向型住宅は全世帯対象で ¥最大125万円(東京は地域区分6で110万円目安)。");
+    if(state.setai==="子育て・若者" || state.setai==="不明")
+      msgs.push("[KN] 子育て世帯・若者夫婦世帯なら、長期優良住宅 ¥最大80万円／ZEH水準住宅 ¥最大40万円も対象(ZEH水準は2026/9/30締切と早め)。");
+    else
+      msgs.push("[KN] 長期優良住宅・ZEH水準の枠は子育て・若者夫婦世帯向けのため、一般世帯はGX志向型が中心です。");
+    msgs.push("[TO] 東京ゼロエミ住宅(新築・要認証)。戸建の建設費助成は 水準1=¥30万円／水準2=¥50万円／水準3=¥210万円/戸。太陽光パネル付きで不動産取得税の減免も。");
+    msgs.push("[TO] さらに太陽光(¥12万円/kW・上限36万円)・蓄電池・V2H(上限50万円、EV所有+太陽光なら全額・上限100万円)の設置助成を上乗せ可。");
+    msgs.push("[KU] 杉並区エコ住宅促進助成は、新築の太陽光(¥4万円/kW・上限12万円)・蓄電池(¥定額5万円)も対象。");
+    msgs.push("国の新築は登録事業者経由・基礎着工時期や床面積(50〜240㎡)等の要件あり。人気で早期終了の可能性、早めの計画を。");
+    msgs.push("二世帯住宅は住戸登記(1戸か区分登記2戸か)と世帯で扱いが変わります。長期優良/ZEHは子育て・若者夫婦世帯が取得・入居か等で判定。GXは全世帯対象。最終確認はコールセンター(0570-081-789)や登録事業者へ。");
+    links.push("kn_mirai","to_zero","ku_eco","kn_camp");
+  }
+  else {
+    msgs.push("[KU] 杉並区＝エコ住宅促進助成(太陽光・蓄電池・断熱・給湯器)、外まわりの緑化・狭あい道路の塀など。");
+    links.push("ku_eco","ku_midori","ku_kyoai");
+    if(state.mokuzou==="木造"){ msgs.push("[KU] 木造住宅なので、耐震診断・耐震改修助成も対象になり得ます。"); links.push("ku_to","ku_tn"); }
+    else if(state.mokuzou==="不明"){ msgs.push("[KU] 木造の場合は耐震診断・改修助成も対象に。まず簡易診断で確認できます。"); links.push("ku_to","ku_tn"); }
+    else { msgs.push("[KU] 非木造の耐震は別制度（マンション・ビル等の耐震化助成）になります。"); }
+    msgs.push("[TO] 東京都＝断熱・太陽光住宅普及拡大事業(太陽光・蓄電池・窓/ドア・浴槽の断熱・エコキュート・V2H)。");
+    links.push("to_dan");
+    if(state.endou==="沿道"){ msgs.push("[TO] 環七・環八沿道なので、防音サッシ等の「沿道の防音工事助成」も対象になり得ます。"); links.push("to_bouon"); }
+    else if(state.endou==="不明"){ msgs.push("[TO] 環七・環八の沿道（道路から約20m以内）にお住まいなら、沿道の防音工事助成も対象に。"); links.push("to_bouon"); }
+    msgs.push("[KN] 国＝住宅省エネ2026キャンペーン(みらいエコ住宅／先進的窓リノベ／給湯省エネ)。3事業は併用OK。");
+    links.push("kn_camp");
+    msgs.push("例として太陽光＋蓄電池で ¥約300万円規模 の試算例も(目安)。具体額は工事内容しだいです。");
+  }
+
+  await say(msgs);
+  botLinks(links);
+  await say([
+    "【ご注意】金額は令和8年度の目安です。各制度は予算枠に達し次第、受付終了。区・都・国の併用には“重複不可”の条件もあるため、組み合わせは個別確認が必要です。",
+    "ここまでの診断は登録不要・無料です。もっと詳しく「あなたの家でもらえる最大額」を知りたい方だけ、下からご相談ください（任意・しつこい勧誘や契約の急かしはしません）。"
+  ]);
+  quick([
+    {label:"☎ 無料相談 03-6383-5230",cls:"tel",href:"tel:0363835230"},
+    /* LINE公式アカウント登録後、次の1行のコメントを外し 'https://lin.ee/XXXX' を友だち追加URLへ差し替えると、緑のLINE相談ボタンが復活します:
+    {label:"💬 LINEで相談（任意）",href:"https://lin.ee/XXXX"}, */
+    {label:"もう一度診断する",cls:"ghost",fn:()=>start()},
+  ]);
+}
+
+start();
+</script>
+</body>
+</html>
