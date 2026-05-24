@@ -76,7 +76,7 @@
 <body>
   <div class="phone">
     <header>
-      <div class="av">和</div>
+      <div class="av"><svg viewBox="0 0 64 64" width="30" height="30" aria-label="山宮建築設計事務所"><circle cx="33" cy="12" r="7.5" fill="#C0152A"/><path d="M33 22 L54 56 H12 Z" fill="#2E8B57"/><path d="M24.5 42.5 H41.5 L44 47 H22 Z" fill="#fff"/><path d="M28.5 35 H38.5 L41 39 H26 Z" fill="#fff"/><path d="M12 56 L22 39.5 L24.5 44 L19 56 Z" fill="#84B3A4"/></svg></div>
       <div class="ht"><b>かんたん補助金診断</b><span>杉並区の戸建て向け・無料・登録不要／約30秒</span></div>
       <div class="badge">令和8<br>年度版</div>
     </header>
@@ -101,10 +101,10 @@ function userBubble(t){const r=document.createElement('div');r.className='row us
   r.innerHTML='<div class="bub">'+t.replace(/</g,'&lt;')+'</div>';chatEl.appendChild(r);scroll();}
 
 function botBubble(t){const r=document.createElement('div');r.className='row bot';
-  r.innerHTML='<div class="mini">和</div><div class="bub">'+fmt(t)+'</div>';chatEl.appendChild(r);scroll();}
+  r.innerHTML='<div class="mini"><svg viewBox="0 0 64 64" width="20" height="20" aria-label="山宮"><circle cx="33" cy="12" r="7" fill="#fff"/><path d="M33 22 L54 56 H12 Z" fill="#fff"/><path d="M24.5 42.5 H41.5 L44 47 H22 Z" fill="#2E8B57"/><path d="M28.5 35 H38.5 L41 39 H26 Z" fill="#2E8B57"/></svg></div><div class="bub">'+fmt(t)+'</div>';chatEl.appendChild(r);scroll();}
 
 function typing(on){if(on){const r=document.createElement('div');r.className='row bot';r.id='typing';
-  r.innerHTML='<div class="mini">和</div><div class="typing"><i></i><i></i><i></i></div>';chatEl.appendChild(r);scroll();}
+  r.innerHTML='<div class="mini"><svg viewBox="0 0 64 64" width="20" height="20" aria-label="山宮"><circle cx="33" cy="12" r="7" fill="#fff"/><path d="M33 22 L54 56 H12 Z" fill="#fff"/><path d="M24.5 42.5 H41.5 L44 47 H22 Z" fill="#2E8B57"/><path d="M28.5 35 H38.5 L41 39 H26 Z" fill="#2E8B57"/></svg></div><div class="typing"><i></i><i></i><i></i></div>';chatEl.appendChild(r);scroll();}
   else{const t=document.getElementById('typing');if(t)t.remove();}}
 
 function quick(opts){quickEl.innerHTML='';opts.forEach(o=>{
@@ -137,7 +137,7 @@ const LINKS={
 function srcCls(s){return s==="区"?"ku":s==="都"?"to":"kn";}
 function botLinks(keys){
   const u=[...new Set(keys)].filter(k=>LINKS[k]); if(!u.length) return;
-  let h='<div class="mini">和</div><div class="bub"><span class="lhd">🔗 公式ページ（詳細・申請はこちら）</span>';
+  let h='<div class="mini"><svg viewBox="0 0 64 64" width="20" height="20" aria-label="山宮"><circle cx="33" cy="12" r="7" fill="#fff"/><path d="M33 22 L54 56 H12 Z" fill="#fff"/><path d="M24.5 42.5 H41.5 L44 47 H22 Z" fill="#2E8B57"/><path d="M28.5 35 H38.5 L41 39 H26 Z" fill="#2E8B57"/></svg></div><div class="bub"><span class="lhd">🔗 公式ページ（詳細・申請はこちら）</span>';
   u.forEach(k=>{const L=LINKS[k];
     h+='<a class="lnk" href="'+L.u+'" target="_blank" rel="noopener"><span class="src '+srcCls(L.s)+'">'+L.s+'</span>'+L.n+'<span class="ar">›</span></a>';});
   h+='<div style="font-size:9px;color:#8a958d;margin-top:7px;line-height:1.4;">※外部の公式サイトが開きます。最新の金額・要件・受付状況は各ページでご確認ください。</div></div>';
