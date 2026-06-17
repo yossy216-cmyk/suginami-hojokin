@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>事業計画 ヒアリング｜山宮建築設計事務所</title>
+<style>
+  :root{
+    --pine:#1E4034;--pine2:#2C5746;--leaf:#3F7A4E;--leaf-soft:#EAF1E7;
+    --amber:#C2761F;--amber-deep:#9C570F;--amber-soft:#FBF0DC;
+    --cream:#F7F2E7;--paper:#FFF;--ink:#22302B;--ink-soft:#5A655E;--line:#E0D4BB;--ok:#3F7A4E;--warn:#B23A2E;
+    --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{font-family:var(--sans);color:var(--ink);background:var(--cream);}
+  body{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 16px 40px;}
+  header{width:100%;max-width:760px;padding:18px 4px 14px;display:flex;align-items:center;gap:12px;}
+  header .logo{width:44px;height:44px;flex:none;}
+  header .ttl{font-size:22px;font-weight:800;color:var(--pine);line-height:1.2;}
+  header .sub{font-size:15px;color:var(--ink-soft);margin-top:2px;}
+  .progress-wrap{width:100%;max-width:760px;margin:4px 0 18px;}
+  .progress-bar{height:12px;background:#E7DFCC;border-radius:999px;overflow:hidden;}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--leaf),var(--pine2));border-radius:999px;transition:width .35s;}
+  .progress-text{font-size:15px;color:var(--ink-soft);margin-top:6px;text-align:right;font-weight:700;}
+  .card{width:100%;max-width:760px;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 22px rgba(40,50,45,.08);padding:30px 28px 26px;}
+  .step-label{display:inline-block;font-size:15px;font-weight:800;color:var(--amber-deep);background:var(--amber-soft);border-radius:999px;padding:5px 16px;margin-bottom:16px;}
+  .q{font-size:27px;font-weight:800;line-height:1.5;}
+  .hint{font-size:18px;color:var(--ink-soft);margin-top:12px;line-height:1.7;}
+  .opts{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+  .opt{font-size:21px;font-weight:700;text-align:left;width:100%;padding:18px 20px;background:var(--leaf-soft);border:2px solid transparent;border-radius:14px;color:var(--ink);cursor:pointer;transition:all .15s;line-height:1.4;}
+  .opt:hover{border-color:var(--leaf);background:#dfead9;}
+  .opt:focus-visible{outline:3px solid var(--amber);outline-offset:2px;}
+  .opt.sel{background:var(--pine);color:#fff;border-color:var(--pine);}
+  .field{margin-top:22px;}
+  .field input,.field textarea{width:100%;font-family:var(--sans);font-size:24px;padding:16px 18px;border:2px solid var(--line);border-radius:14px;color:var(--ink);background:#fff;}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--amber);}
+  .field textarea{min-height:120px;resize:vertical;line-height:1.6;}
+  .nav{display:flex;gap:14px;margin-top:30px;}
+  .btn{font-size:22px;font-weight:800;padding:18px 10px;border-radius:14px;border:none;cursor:pointer;flex:1;transition:all .15s;line-height:1.3;}
+  .btn-back{background:#EEE7D6;color:var(--ink-soft);flex:0 0 32%;}
+  .btn-back:hover{background:#e3dac4;}
+  .btn-next{background:linear-gradient(180deg,var(--amber),var(--amber-deep));color:#fff;}
+  .btn-next:hover{filter:brightness(1.06);}
+  .btn:focus-visible{outline:3px solid var(--pine);outline-offset:2px;}
+  .btn:disabled{opacity:.45;cursor:not-allowed;}
+  .skip{margin-top:16px;text-align:center;}
+  .skip button{background:none;border:none;color:var(--ink-soft);font-size:17px;text-decoration:underline;cursor:pointer;font-family:var(--sans);padding:6px;}
+  .center-msg{text-align:center;}
+  .center-msg .big{font-size:30px;font-weight:800;color:var(--pine);line-height:1.5;}
+  .center-msg p{font-size:19px;color:var(--ink-soft);margin-top:16px;line-height:1.8;}
+  .start-btn{font-size:24px;font-weight:800;padding:20px 40px;border:none;border-radius:14px;background:linear-gradient(180deg,var(--amber),var(--amber-deep));color:#fff;cursor:pointer;margin-top:28px;}
+  .start-btn:hover{filter:brightness(1.06);}
+  .summary{margin-top:20px;}
+  .sum-item{display:flex;flex-direction:column;gap:3px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .sum-q{font-size:16px;color:var(--ink-soft);font-weight:700;}
+  .sum-a{font-size:21px;font-weight:700;}
+  .sum-a.empty{color:var(--warn);}
+  .send-btn{width:100%;font-size:24px;font-weight:800;padding:20px;border:none;border-radius:14px;background:linear-gradient(180deg,var(--amber),var(--amber-deep));color:#fff;cursor:pointer;margin-top:22px;}
+  .send-btn:hover{filter:brightness(1.06);}
+  .send-btn:disabled{opacity:.5;}
+  .sent{color:var(--ok);font-weight:800;font-size:20px;text-align:center;margin-top:16px;min-height:26px;line-height:1.6;}
+  .note{width:100%;max-width:760px;font-size:15px;color:var(--ink-soft);margin-top:20px;text-align:center;line-height:1.7;}
+  @media(max-width:520px){.q{font-size:23px;}.opt{font-size:19px;}.field input,.field textarea{font-size:21px;}.btn{font-size:19px;}.card{padding:24px 18px;}}
+</style>
+</head>
+<body>
+  <header>
+    <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><circle cx="33" cy="12" r="7.5" fill="#C0152A"/><path d="M33 22 L54 56 H12 Z" fill="#2E8B57"/><path d="M24.5 42.5 H41.5 L44 47 H22 Z" fill="#fff"/><path d="M28.5 35 H38.5 L41 39 H26 Z" fill="#fff"/><path d="M12 56 L22 39.5 L24.5 44 L19 56 Z" fill="#84B3A4"/></svg>
+    <div><div class="ttl">事業計画 ヒアリング</div><div class="sub">株式会社 山宮建築設計事務所</div></div>
+  </header>
+  <div class="progress-wrap" id="progWrap" style="display:none;">
+    <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+    <div class="progress-text" id="progText"></div>
+  </div>
+  <div class="card" id="card"></div>
+  <div class="note" id="note" style="display:none;">入力した内容は、回答先（山宮建築設計事務所の管理する保存先）にのみ送られます。</div>
+
+<script>
+/* ===== 設定：Googleフォーム連携 =====
+   フォーム作成後、下の FORM_ACTION と各 entry ID を差し替えてください。
+   手順は同梱の「作成手順書」を参照。 */
+const FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSer2aJHsPf3KktoW9EQHZqKjwmOYbgqEtQDQOGYBEtn6Ity4w/formResponse"; // 例: https://docs.google.com/forms/d/e/XXXX/formResponse
+const ENTRY = {
+  company:    "entry.356568974",
+  capital:    "entry.1127254670",
+  employees:  "entry.856636105",
+  ceo_name:   "entry.436039114",
+  license:    "entry.2137424071",
+  experience: "entry.166815233",
+  career:     "entry.1356681054",
+  loan_now:   "entry.503566507",
+  loan_amount:"entry.2035641477",
+  own_fund:   "entry.807821447",
+  avg_price:  "entry.1699631111",
+  free:       "entry.602327120"
+};
+
+const QUESTIONS=[
+ {key:"company",title:"会社のこと",q:"会社をつくったのは、いつ頃ですか？",hint:"だいたいで大丈夫です。例：2008年（平成20年）ごろ",type:"text",placeholder:"例：2008年（平成20年）ごろ"},
+ {key:"capital",title:"会社のこと",q:"資本金は、いくらですか？",hint:"分かる範囲で。分からなければ「あとで」を押してください。",type:"text",placeholder:"例：300万円"},
+ {key:"employees",title:"会社のこと",q:"いま、何人で仕事をしていますか？",hint:"社長を含めた人数で大丈夫です。例：常勤2名・パート1名",type:"text",placeholder:"例：常勤2名・パート1名"},
+ {key:"ceo_name",title:"社長ご自身のこと",q:"社長のお名前を教えてください。",hint:"事業計画書に記載するお名前です。",type:"text",placeholder:"例：山宮 太郎"},
+ {key:"license",title:"社長ご自身のこと",q:"建築士の資格はお持ちですか？",hint:"一番大事な項目のひとつです。",type:"select",options:["一級建築士","二級建築士","木造建築士","その他・あとで記入"]},
+ {key:"experience",title:"社長ご自身のこと",q:"建築設計の仕事は、何年くらいの経験がありますか？",hint:"個人事務所での経営経験も含めて。創業融資で最も大事な項目です。",type:"select",options:["10年未満","10〜20年","20〜30年","30年以上"]},
+ {key:"career",title:"社長ご自身のこと",q:"これまでのご経歴や、自慢の仕事を教えてください。",hint:"個人事務所での経営経験、手がけた建物など。短くて大丈夫です。",type:"textarea",placeholder:"例：個人事務所として◯年経営。区内の戸建てを中心に◯件を設計・監理。"},
+ {key:"loan_now",title:"これまでの売上・借入",q:"いま、銀行などからの借入はありますか？",hint:"残っている借入のおおよその金額。なければ「借入なし」を押してください。",type:"select",options:["借入なし","少しある（あとで金額記入）","ある（あとで金額記入）"]},
+ {key:"loan_amount",title:"今回の融資",q:"今回、いくら借りたいとお考えですか？",hint:"ご希望のおおよその金額で大丈夫です。",type:"select",options:["500万円ぐらい","1,000万円ぐらい","1,500万円ぐらい","2,000万円以上"]},
+ {key:"own_fund",title:"今回の融資",q:"自分で用意できるお金（自己資金）は、ありますか？",hint:"審査で大事な項目です。おおよその金額で大丈夫です。",type:"text",placeholder:"例：300万円"},
+ {key:"avg_price",title:"これからの見込み",q:"工事1件で、だいたいいくらぐらいの仕事になりますか？",hint:"設計料やリフォーム工事の、1件あたりの平均的な金額です。",type:"text",placeholder:"例：150万円ぐらい"},
+ {key:"free",title:"これからの見込み",q:"ほかに伝えておきたいことはありますか？",hint:"なければ空のまま「次へ」で大丈夫です。",type:"textarea",placeholder:"例：地域でのつながりが強い／紹介が多い など",optional:true}
+];
+
+let idx=-1; const answers={};
+const card=document.getElementById('card'),progWrap=document.getElementById('progWrap'),progFill=document.getElementById('progFill'),progText=document.getElementById('progText'),note=document.getElementById('note');
+
+function renderIntro(){
+  progWrap.style.display='none';note.style.display='none';
+  card.innerHTML=`<div class="center-msg"><div class="big">これから かんたんな質問に<br>お答えください。</div>
+    <p>全部で ${QUESTIONS.length} 問です。<br>むずかしく考えず、だいたいで大丈夫です。<br>分からない質問は とばせます。<br>最後に「送信」を押すと 担当者に届きます。</p>
+    <button class="start-btn" id="startBtn">はじめる</button></div>`;
+  document.getElementById('startBtn').onclick=()=>{idx=0;render();};
+}
+function render(){
+  if(idx<0){renderIntro();return;}
+  if(idx>=QUESTIONS.length){renderDone();return;}
+  const Q=QUESTIONS[idx];
+  progWrap.style.display='block';note.style.display='block';
+  progFill.style.width=Math.round(idx/QUESTIONS.length*100)+'%';
+  progText.textContent=`${idx+1} / ${QUESTIONS.length} 問目`;
+  let body=`<div class="step-label">${Q.title}</div><div class="q">${Q.q}</div><div class="hint">${Q.hint||''}</div>`;
+  if(Q.type==='select'){
+    body+=`<div class="opts">`+Q.options.map(o=>`<button class="opt ${answers[Q.key]===o?'sel':''}" data-v="${o}">${o}</button>`).join('')+`</div>`;
+  }else if(Q.type==='textarea'){
+    body+=`<div class="field"><textarea id="inp" placeholder="${Q.placeholder||''}">${answers[Q.key]||''}</textarea></div>`;
+  }else{
+    body+=`<div class="field"><input id="inp" type="text" placeholder="${Q.placeholder||''}" value="${answers[Q.key]||''}"></div>`;
+  }
+  body+=`<div class="nav"><button class="btn btn-back" id="backBtn" ${idx===0?'disabled':''}>もどる</button>
+    <button class="btn btn-next" id="nextBtn">${idx===QUESTIONS.length-1?'入力を おわる':'次へ すすむ'}</button></div>
+    <div class="skip"><button id="skipBtn">この質問は あとで記入する</button></div>`;
+  card.innerHTML=body;
+  card.querySelectorAll('.opt').forEach(btn=>{btn.onclick=()=>{answers[Q.key]=btn.dataset.v;card.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');};});
+  document.getElementById('backBtn').onclick=()=>{saveInput(Q);idx--;render();};
+  document.getElementById('nextBtn').onclick=()=>{saveInput(Q);idx++;render();window.scrollTo(0,0);};
+  document.getElementById('skipBtn').onclick=()=>{answers[Q.key]='';idx++;render();window.scrollTo(0,0);};
+  const inp=document.getElementById('inp');if(inp)inp.focus();
+}
+function saveInput(Q){const inp=document.getElementById('inp');if(inp)answers[Q.key]=inp.value.trim();}
+
+function renderDone(){
+  progFill.style.width='100%';progText.textContent=`${QUESTIONS.length} / ${QUESTIONS.length} 問 完了`;
+  let items=QUESTIONS.map(Q=>{let a=answers[Q.key];const e=!a||a==='';return `<div class="sum-item"><span class="sum-q">${Q.q}</span><span class="sum-a ${e?'empty':''}">${e?'（あとで記入）':a}</span></div>`;}).join('');
+  card.innerHTML=`<div class="center-msg"><div class="big">おつかれさまでした！</div>
+    <p>下の内容で よろしければ、<br>「送信する」を 押してください。</p></div>
+    <div class="summary">${items}</div>
+    <button class="send-btn" id="sendBtn">この内容を 送信する</button>
+    <div class="sent" id="sent"></div>
+    <div class="nav"><button class="btn btn-back" id="backBtn2">もどって 直す</button></div>`;
+  document.getElementById('backBtn2').onclick=()=>{idx=QUESTIONS.length-1;render();};
+  document.getElementById('sendBtn').onclick=submitToForm;
+}
+
+function submitToForm(){
+  const sent=document.getElementById('sent'),btn=document.getElementById('sendBtn');
+  if(FORM_ACTION.indexOf('__')===0){ sent.textContent='⚠ 送信先が未設定です（管理者にご連絡ください）。'; sent.style.color='#B23A2E'; return; }
+  btn.disabled=true; sent.style.color='var(--ink-soft)'; sent.textContent='送信しています…';
+  const fd=new FormData();
+  QUESTIONS.forEach(Q=>{ if(ENTRY[Q.key] && ENTRY[Q.key].indexOf('__')!==0){ fd.append(ENTRY[Q.key], answers[Q.key]||''); } });
+  // Google Forms は no-cors で受け付ける。成功可否は取れないため送信後に完了表示。
+  fetch(FORM_ACTION,{method:'POST',mode:'no-cors',body:fd})
+    .then(()=>{ sent.style.color='var(--ok)'; sent.textContent='✓ 送信しました。ありがとうございました。'; })
+    .catch(()=>{ sent.style.color='var(--ok)'; sent.textContent='✓ 送信しました。ありがとうございました。'; });
+}
+renderIntro();
+</script>
+</body>
+</html>
