@@ -127,12 +127,12 @@ const LINKS={
   ku_kyoai:{n:"杉並区 狭あい道路の塀建替え助成",u:"https://www.city.suginami.tokyo.jp/guide/sumai/burokkubeitoukaishujosei/1048920.html",s:"区"},
   ku_kaigo:{n:"杉並区 介護保険の住宅改修費",u:"https://www.city.suginami.tokyo.jp/guide/zei/kaigo/service/1014600.html",s:"区"},
   ku_koreisha:{n:"杉並区 高齢者住宅改修給付",u:"https://www.city.suginami.tokyo.jp/s039/1153.html",s:"区"},
-  to_dan:{n:"東京都 断熱・太陽光住宅普及拡大事業",u:"https://www.tokyo-co2down.jp/subsidy/adiabatic_solor",s:"都"},
+  to_dan:{n:"東京都 断熱・太陽光住宅普及拡大事業",u:"https://www.tokyo-co2down.jp/subsidy/adiabatic_solar/",s:"都"},
   to_zero:{n:"東京都 東京ゼロエミ住宅",u:"https://www.tokyo-co2down.jp/subsidy/tokyo_zero_emission_house/tokyo_zero_emission_house_r08_fukyu/",s:"都"},
   to_bouon:{n:"東京都 沿道の防音工事助成（環七・環八等）",u:"https://www.kensetsu.metro.tokyo.lg.jp/road/endo/bouon",s:"都"},
   kn_camp:{n:"国 住宅省エネ2026キャンペーン",u:"https://jutaku-shoene2026.mlit.go.jp/",s:"国"},
   kn_mirai:{n:"国 みらいエコ住宅2026",u:"https://mirai-eco2026.mlit.go.jp/",s:"国"},
-  kn_mado:{n:"国 先進的窓リノベ2026",u:"https://www.env.go.jp/earth/earth/ondanka/building_insulation/window_00004.html",s:"国"},
+  kn_mado:{n:"国 先進的窓リノベ2026",u:"https://window-renovation2026.env.go.jp/",s:"国"},
 };
 function srcCls(s){return s==="区"?"ku":s==="都"?"to":"kn";}
 function botLinks(keys){
@@ -197,7 +197,7 @@ async function result(){
 
   if(t==="断熱・窓"){
     msgs.push("[KN] 先進的窓リノベ2026＝窓・ドアの断熱改修で ¥上限100万円/戸。補助総額5万円以上が条件です。");
-    if(s==="平成10年以前") msgs.push("[KN] みらいエコ住宅2026も対象になりやすいです(¥上限100万円/戸)。2026年から窓工事が必須なので、窓リノベと相性◎。");
+    if(s==="平成10年以前") msgs.push("[KN] みらいエコ住宅2026も対象になりやすいです(¥最大100万円/戸)。2026年から窓工事が必須なので、窓リノベと相性◎。");
     else if(s==="平成11年以降") msgs.push("[KN] みらいエコ住宅2026は平成11年基準を満たさない築古向けのため、対象外の可能性。まず窓リノベ＋下記の都・区が中心です。");
     else msgs.push("[KN] みらいエコ住宅2026は築年で対象が変わります(平成10年以前築相当が目安)。要確認です。");
     msgs.push("[TO] 高断熱の窓・ドア、壁/床の断熱化、高断熱浴槽が対象。窓・ドアは単価が拡充されています。");
@@ -208,14 +208,14 @@ async function result(){
   }
   else if(t==="太陽光・蓄電池"){
     if(s==="蓄電池のみ"){
-      msgs.push("[TO] 蓄電池 ¥上限120万円/戸。DR実証に参加すると上限が撤廃され、参加費＋IoT機器で計15万円が上乗せ。");
-      msgs.push("[KN] DR家庭用蓄電池 ¥上限60万円。2026年4月から東京都の補助と併用できます。");
+      msgs.push("[TO] 蓄電池 ¥10万円/kWh・上限120万円/戸(DR非参加時)。DR実証参加で固定加算(基本10万＋エネマネ機器10〜15万/台)。");
+      msgs.push("[KN] 国のDR家庭用蓄電池(¥上限60万円)は2026年5月29日に予算到達で受付終了・再開予定なし。");
       msgs.push("[KU] 蓄電池 ¥定額5万円。");
     } else {
-      msgs.push("[TO] 太陽光 ¥12万円/kW(上限36万円)＋蓄電池 ¥上限120万円/戸(DR実証で上限撤廃)。機能性PVは最大10万円上乗せ。");
+      msgs.push("[TO] 太陽光(既存住宅) ¥15万円/kW(上限45万円)＋蓄電池 ¥上限120万円/戸(DR参加で固定加算)。機能性PVは最大10万円上乗せ。");
       msgs.push("[KU] 太陽光 ¥4万円/kW(上限12万円)＋蓄電池 ¥定額5万円。");
-      msgs.push("[KN] 蓄電池はDR家庭用蓄電池 ¥上限60万円も併用候補。");
-      msgs.push("併用イメージ：太陽光6kW＋蓄電池(DR実証あり)で 区17万＋都286万＝¥約303万円 という試算例も(あくまで目安)。");
+      msgs.push("[KN] 国のDR家庭用蓄電池(¥上限60万円)は2026年5月29日に受付終了・再開予定なし。");
+      msgs.push("併用イメージ：国・都・区を組み合わせると高額助成も可能です(対象・条件で変動。最大額は無料診断で確認)。");
     }
     if(s==="未定") msgs.push("屋根の向き・面積で太陽光の可否が変わるため、最終的には現地確認が確実です。");
     links.push("to_dan","ku_solar","kn_camp");
@@ -277,7 +277,7 @@ async function result(){
     else if(state.endou==="不明"){ msgs.push("[TO] 環七・環八の沿道（道路から約20m以内）にお住まいなら、沿道の防音工事助成も対象に。"); links.push("to_bouon"); }
     msgs.push("[KN] 国＝住宅省エネ2026キャンペーン(みらいエコ住宅／先進的窓リノベ／給湯省エネ)。3事業は併用OK。");
     links.push("kn_camp");
-    msgs.push("例として太陽光＋蓄電池で ¥約300万円規模 の試算例も(目安)。具体額は工事内容しだいです。");
+    msgs.push("例として国・都・区の併用で高額助成も可能です(対象・条件で変動)。具体額は工事内容しだいです。");
   }
 
   await say(msgs);
