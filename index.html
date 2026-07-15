@@ -78,6 +78,9 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  // QRのutm_content(=b01..b12)を全イベントに block として付与
+  var _b = new URLSearchParams(location.search).get('utm_content');
+  gtag('set', { block: _b || '(none)' });
   gtag('config', 'G-C957SCW9Q9');
 </script>
 </head>
