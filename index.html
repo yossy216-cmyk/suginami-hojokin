@@ -72,6 +72,14 @@
   .disc{font-size:9px;color:var(--ink-soft);text-align:center;padding:7px 14px 9px;background:#fff;line-height:1.55;flex:0 0 auto;border-top:1px solid var(--sand);}
   .chat::-webkit-scrollbar{width:0;}
 </style>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C957SCW9Q9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C957SCW9Q9');
+</script>
 </head>
 <body>
   <div class="phone">
@@ -295,6 +303,16 @@ async function result(){
 }
 
 start();
+</script>
+<script>
+/* ブロック別の電話タップ計測（QRのutm_content=b01..b12を付与） */
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+  if(a && window.gtag){
+    var block = new URLSearchParams(location.search).get('utm_content') || '(none)';
+    gtag('event', 'tel_tap', { block: block });
+  }
+});
 </script>
 </body>
 </html>
